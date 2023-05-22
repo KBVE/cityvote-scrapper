@@ -1,69 +1,37 @@
-//!         [Core]
-const puppeteer = require ('puppeteer');
-const express = require('express');
-const bodyParser = require('body-parser');
-const url = require('url');
-const querystring = require('querystring');
-//?         [OPT]
-const axios = require('axios');
+//!         [App]
+const shaco = require('./shaco');
+const _v = require('./log');
 
 
-//? Example Code Reference -> https://gist.github.com/nitayneeman/69876fea604aed196ad6cdf4c3e25f97
-//? Main Example Function -> https://scrapfly.io/blog/web-scraping-with-puppeteer-and-nodejs/
-
-async function manURL( url, xpath, click = false ){
-  // First, we must launch a browser instance
-  const browser = await puppeteer.launch({
-    // Headless option allows us to disable visible GUI, so the browser runs in the "background"
-    // for development lets keep this to true so we can see what's going on but in
-    // on a server we must set this to true
-    headless: "new",
-    // This setting allows us to scrape non-https websites easier
-    ignoreHTTPSErrors: true,
-    args: ['--no-sandbox'],
-})
-// then we need to start a browser tab
-let page = await browser.newPage();
-// and tell it to go to some URL
-await page.goto(url, {
-    waitUntil: 'domcontentloaded',
-});
-// print html content of the website
-//console.log(await page.content());
-return await page.content();
-// close everything
-await page.close();
-await browser.close();
+function voidError(message) {
+  _v(`[error]: ${message}`);
+  var error = {
+    status: 500,
+    json: message,
+  };
+ return JSON.stringify(error);
 }
 
-let application = express();
-application.use(bodyParser.urlencoded({ extended: false}));
-application.use(bodyParser.json());
+async function app(__data) {
+  _v('Running Application');
+  var __html = undefined;
+  var httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+  if (__data == null)
+    return voidError('Missing data')
+
+  const { __website , __xpath, __action } = __data;
+
+  if (__website == null || !httpRegex.test(__website))
+    return voidError('Website variable missing or has errors')
 
 
-application.get('/', async function(req, res)
-{
-  res.send('Hello!');
-});
+  if (__website && !__xpath && __action == 'clone')
+    return shaco.clone(__website)
+  
+  if (__website && __xpath && __action == 'box')
+    return shaco.box(__website, __xpath)
 
-application.get('/url', async function(req, res)
-{
-    console.log('You hit URL');
-    var website = req.query['id'];
-    var xpath = req.query['xpath'];
-    var click = req.query['click'] || false;
-    console.log(website);
-    console.log(xpath);
-    if ( website != null && xpath != null)
-    {
-    let html = await manURL(website, xpath, click);
-    res.send(html);  
-  }
-    
-});
 
-application.listen(4420, function() {
-  console.log('Launched');
-})
+}
 
-//* main(); migrate this into application
+module.exports = app;
