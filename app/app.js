@@ -11,7 +11,7 @@ const axios = require('axios');
 //? Example Code Reference -> https://gist.github.com/nitayneeman/69876fea604aed196ad6cdf4c3e25f97
 //? Main Example Function -> https://scrapfly.io/blog/web-scraping-with-puppeteer-and-nodejs/
 
-async function manURL( url ){
+async function manURL( url, xpath, click = false ){
   // First, we must launch a browser instance
   const browser = await puppeteer.launch({
     // Headless option allows us to disable visible GUI, so the browser runs in the "background"
@@ -50,10 +50,13 @@ application.get('/url', async function(req, res)
 {
     console.log('You hit URL');
     var website = req.query['id'];
+    var xpath = req.query['xpath'];
+    var click = req.query['click'] || false;
     console.log(website);
-    if ( website != null)
+    console.log(xpath);
+    if ( website != null && xpath != null)
     {
-    let html = await manURL(website);
+    let html = await manURL(website, xpath, click);
     res.send(html);  
   }
     
