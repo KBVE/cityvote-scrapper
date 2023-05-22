@@ -3,3 +3,5 @@ app/build
 app/dist
 public/uploads
 .env
+npm-debug.log
+app/npm-debug.log
