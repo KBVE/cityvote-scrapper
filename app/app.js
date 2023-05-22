@@ -4,6 +4,7 @@ const puppeteer = require ('puppeteer');
 
 //? Example Code Reference -> https://gist.github.com/nitayneeman/69876fea604aed196ad6cdf4c3e25f97
 //? Main Example Function -> https://scrapfly.io/blog/web-scraping-with-puppeteer-and-nodejs/
+
 async function main(){
   // First, we must launch a browser instance
   const browser = await puppeteer.launch({
