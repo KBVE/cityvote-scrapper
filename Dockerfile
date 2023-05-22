@@ -39,7 +39,8 @@ RUN rm google-chrome-stable_current_amd64.deb
 # Check chrome version
 RUN echo "Chrome: " && google-chrome --version
 
-
+# PM2
+# RUN npm install pm2 -g
 
 # Working Directory
 WORKDIR /app/
@@ -50,5 +51,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 RUN yarn install
 
 COPY ./app .
+
+EXPOSE 4420
 #RUN yarn test
 CMD ["/bin/bash", "-c", "yarn test"]
