@@ -1,0 +1,5 @@
+.cache
+app/build
+app/dist
+public/uploads
+.env
