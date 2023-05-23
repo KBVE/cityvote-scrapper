@@ -21,12 +21,13 @@ async function app(__data) {
 
   const { __website , __xpath, __action } = __data;
 
+
   if (__website == null || !httpRegex.test(__website))
     return voidError('Website variable missing or has errors')
 
-
-  if (__website && !__xpath && __action == 'clone')
+  if (__website && __action == 'clone') //? Shadow Clone - Grabs HTML
     return shaco.clone(__website)
+  
   
   if (__website && __xpath && __action == 'box')
     return shaco.box(__website, __xpath)

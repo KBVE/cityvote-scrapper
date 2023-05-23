@@ -1,7 +1,7 @@
 //?         [SHAC0]
 const puppeteer = require("puppeteer");
 const _v = require("./log");
-const vm = require('node:vm');
+//const vm = require('node:vm');
 
 
 async function clone(__website) {
@@ -25,8 +25,8 @@ async function clone(__website) {
   return __html;
 }
 
-async function boxy(__website, __xpath) {
-  _v(`Shaco Boxy ${__website}`);
+async function shiv(__website, __xpath) {
+  _v(`Shaco Shiv ${__website}`);
   const browser = await puppeteer.launch({
     headless: "new",
     ignoreHTTPSErrors: true,
@@ -69,4 +69,4 @@ async function box(__website, __xpath) {
   }
   
 
-module.exports = { clone, box, boxy };
+module.exports = { clone, box, shiv };
