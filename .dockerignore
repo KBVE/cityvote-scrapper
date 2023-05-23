@@ -4,4 +4,6 @@ app/dist
 public/uploads
 .env
 npm-debug.log
+node_modules
+app/node_modules
 app/npm-debug.log

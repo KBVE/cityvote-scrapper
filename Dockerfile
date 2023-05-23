@@ -54,4 +54,4 @@ COPY ./app .
 
 EXPOSE 4420
 #RUN yarn test
-CMD ["/bin/bash", "-c", "yarn test"]
+CMD ["/bin/bash", "-c", "yarn start"]
