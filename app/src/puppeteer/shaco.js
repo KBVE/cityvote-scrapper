@@ -1,6 +1,6 @@
 //?         [SHAC0]
 const puppeteer = require("puppeteer");
-const _v = require("./log");
+const _v = require("../../log");
 //const vm = require('node:vm');
 
 
