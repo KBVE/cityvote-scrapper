@@ -14,7 +14,7 @@ function voidError(message) {
 
 async function app(__data) {
   _v('Running Application');
-  var __html = undefined;
+  //var __html = undefined;
   var httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
   if (__data == null)
     return voidError('Missing data')

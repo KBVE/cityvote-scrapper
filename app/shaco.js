@@ -5,7 +5,7 @@ const vm = require('node:vm');
 
 
 async function clone(__website) {
-  _v(`Shaco Cloing ${__website}`);
+  _v(`Shaco Cloning ${__website}`);
 
   const browser = await puppeteer.launch({
     headless: "new",
@@ -26,7 +26,7 @@ async function clone(__website) {
 }
 
 async function boxy(__website, __xpath) {
-  _v(`Shaco Boxy BoxBox ${__website}`);
+  _v(`Shaco Boxy ${__website}`);
   const browser = await puppeteer.launch({
     headless: "new",
     ignoreHTTPSErrors: true,
@@ -48,7 +48,7 @@ async function boxy(__website, __xpath) {
 
 
 async function box(__website, __xpath) {
-    _v(`Shaco BoxUpgrado ${__website}`);
+    _v(`Shaco Box ${__website}`);
     const browser = await puppeteer.launch({
       headless: "new",
       ignoreHTTPSErrors: true,

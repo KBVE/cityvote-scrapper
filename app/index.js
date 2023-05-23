@@ -1,12 +1,14 @@
 //!         [Koa]
 const Koa = require("koa");
 const parser = require("koa-bodyparser");
+const os = require('os');
 //*         [LIB]
-const router = require("./router");
-const _v = require('./log');
+const router = require("./src/webserver/router");
+const _v = require("./log");
 //*         [DATA]
 const App = new Koa();
 const port = 4420;
+
 
 App.use(parser())
   .use(router.routes())
@@ -16,7 +18,7 @@ App.use(parser())
     } catch (err) {
       ctx.status = err.statusCode || err.status || 500;
       ctx.body = {
-        message: err.message
+        message: err.message,
       };
     }
   })
