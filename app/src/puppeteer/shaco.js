@@ -62,6 +62,12 @@ async function load() {
 async function clone(__website) {
   _v(`Shaco Cloning ${__website}`);
 
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    ignoreHTTPSErrors: true,
+    args: ["--no-sandbox"],
+  });
+
   let page = await browser.newPage();
 
   await page.goto(__website, {
