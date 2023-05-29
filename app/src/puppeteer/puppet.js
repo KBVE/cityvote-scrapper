@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 const _v = require("../../log");
 
-const __timeout = 30000;
+const __timeout = 5000;
 
 //?   Minimal Args by Jon
 const minimal_args = [
@@ -55,7 +55,7 @@ class Puppet {
   async _kbveInit() {
     this.loading = true;
     this.browser = await puppeteer.launch({
-      headless: false,
+      headless: "new",
       ignoreHTTPSErrors: true,
       args: minimal_args,
     });
