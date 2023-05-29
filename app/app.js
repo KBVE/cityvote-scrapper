@@ -1,5 +1,5 @@
 //!         [App]
-const shaco = require('./shaco');
+const shaco = require('./src/puppeteer/shaco');
 const _v = require('./log');
 
 
@@ -28,6 +28,11 @@ async function app(__data) {
   if (__website && __action == 'clone') //? Shadow Clone - Grabs HTML
     return shaco.clone(__website)
   
+  if(__website && __action == 'screenshot') //? ScreenshotScreenshotScreenshotScreenshotScreenshotScreenshotScreenshotScreenshotScreenshot
+    return shaco.screenshot(__website) //? This is a random comment from fud
+
+  if(__website && __action == 'shiv')
+    return shaco.shiv(__website, __xpath)
   
   if (__website && __xpath && __action == 'box')
     return shaco.box(__website, __xpath)
