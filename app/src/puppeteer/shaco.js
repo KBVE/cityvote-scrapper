@@ -7,10 +7,18 @@ const { dataMine } = require("./puppet");
 async function clone(__website) {
   _v(`Shaco Cloning ${__website}`);
   const shaco = await dataMine(__website);
+  await shaco._clone();
+  let __html = shaco._process();
+  shaco._close();
+  delete shaco;
+  return __html;
+  
+  /* Older Collection
   let __html = await shaco._clone();
   shaco._close();
   delete shaco;
   return __html;
+  */
 }
 
 async function shiv(__website, __xpath) {

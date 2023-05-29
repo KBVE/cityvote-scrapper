@@ -1,8 +1,9 @@
 const puppeteer = require("puppeteer");
 const _v = require("../../log");
 
-//?   Minimal Args by Jon
+const __timeout = 30000;
 
+//?   Minimal Args by Jon
 const minimal_args = [
   "--autoplay-policy=user-gesture-required",
   "--disable-background-networking",
@@ -60,7 +61,7 @@ class Puppet {
     });
 
     this.page = await this.browser.newPage();
-    await this.page.setDefaultTimeout(5000);
+    await this.page.setDefaultTimeout(__timeout);
     await this.page.setViewport({ width: 1280, height: 720 });
 
     await this.page.goto(this.url, {
