@@ -7,8 +7,8 @@ const { dataMine } = require("./puppet");
 async function clone(__website) {
   _v(`Shaco Cloning ${__website}`);
   const shaco = await dataMine(__website);
-  await shaco._clone();
-  let __html = shaco._process();
+  let __html = await shaco._clone();
+  //let __html = shaco._process();
   shaco._close();
   delete shaco;
   return __html;

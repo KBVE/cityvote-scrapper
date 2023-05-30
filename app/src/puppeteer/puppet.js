@@ -1,7 +1,17 @@
-const puppeteer = require("puppeteer");
+//?     [puppet.js]
+
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+//const puppeteer = require("puppeteer");
 const _v = require("../../log");
 
-const __timeout = 5000;
+const __timeout = 30000;
+const __delay = 90000;
+
+//?   Shadow Mode
+const shadow = [
+  "--no-sandbox",
+];
 
 //?   Minimal Args by Jon
 const minimal_args = [
@@ -54,10 +64,13 @@ class Puppet {
 
   async _kbveInit() {
     this.loading = true;
+    puppeteer.use(StealthPlugin());
     this.browser = await puppeteer.launch({
-      headless: "new",
+      //headless: "new",
+      headless: false,
       ignoreHTTPSErrors: true,
-      args: minimal_args,
+      //args: minimal_args,
+      args: shadow,
     });
 
     this.page = await this.browser.newPage();
@@ -67,6 +80,7 @@ class Puppet {
     await this.page.goto(this.url, {
       waitUntil: "domcontentloaded",
     });
+    await this.page.waitForTimeout(__delay); 
     this.loading = false;
   }
 
